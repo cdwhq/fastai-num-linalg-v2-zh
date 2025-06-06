@@ -1,5 +1,4 @@
 var fs = require('fs')
-var crypto = require('crypto')
 var request = require('sync-request')
 
 var doc_dir = '..'
@@ -12,7 +11,7 @@ function processTex(md) {
         var tex = rm[1]
         var url = 'http://latex.codecogs.com/gif.latex?'
             + encodeURIComponent(tex)
-        var tex_md5 = crypto.createHash("md5").update(tex).digest('hex')
+        var tex_md5 = (require('crypto')).createHash("md5").update(tex).digest('hex')
         var img = request('get', url).getBody()
         
         // replace_all
